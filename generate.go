@@ -65,7 +65,7 @@ func (s *{{$.StructName}}Handler) {{.Name}}(ctx context.Context, args *{{.Args}}
 }
 {{end}}
 
-func Register{{.InterfaceName}}Service(svc *server.Server, hdlr {{.InterfaceName}}Handler, metadata string) error {
+func Register{{.InterfaceName}}(svc *server.Server, hdlr {{.InterfaceName}}Handler, metadata string) error {
 	hand := &{{.StructName}}Handler{hdlr}
 	return svc.RegisterName("{{.InterfaceName}}", hand, metadata)
 }
