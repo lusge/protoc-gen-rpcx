@@ -29,7 +29,6 @@ func New{{.InterfaceName}}Client(xclient client.XClient) *{{.InterfaceName}}Clie
 	return &{{.InterfaceName}}Client{xclient: xclient}
 }
 
-
 {{range .Methods}}
 func (c *{{$.InterfaceName}}Client) {{.Name}}(ctx context.Context, args *{{.Args}}) (*{{.Reply}}, error) {
 	reply := &{{.Reply}}{}
