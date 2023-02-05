@@ -55,6 +55,10 @@ func (s *{{$.StructName}}Handler) {{.Name}}(ctx context.Context, args *{{.Args}}
 		return err
 	}
 
+	if resp == nil {
+		return nil
+	}
+
 	err = copier.Copy(reply, resp)
 
 	if err != nil {
