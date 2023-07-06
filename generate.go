@@ -39,7 +39,7 @@ func (c *{{$.InterfaceName}}Client) {{.Name}}(ctx context.Context, args *{{.Args
 
 type {{.InterfaceName}}Handler interface {
 {{range .Methods}}
-	{{.Name}}(context.Context, *{{.Args}}) (*{{.Reply}}, error)
+	{{.Name}}(context.Context, *{{.Args}}, *{{.Reply}}) error
 {{end}}
 }
 
@@ -49,17 +49,7 @@ type {{.StructName}}Handler struct {
 
 {{range .Methods}}
 func (s *{{$.StructName}}Handler) {{.Name}}(ctx context.Context, args *{{.Args}}, reply *{{.Reply}}) error {
-	resp, err := s.h.{{.Name}}(ctx, args)
-
-	if err != nil {
-		return err
-	}
-
-	if resp == nil {
-		return nil
-	}
-
-	err = copier.Copy(reply, resp)
+	err := s.h.{{.Name}}(ctx, args, reply)
 
 	if err != nil {
 		return err
