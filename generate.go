@@ -50,7 +50,7 @@ type {{.StructName}}Handler struct {
 {{range .Methods}}
 func (s *{{$.StructName}}Handler) {{.Name}}(ctx context.Context, args *{{.Args}}, reply *{{.Reply}}) error {
 	resp, err := s.h.{{.Name}}(ctx, args)
-
+	
 	if err != nil {
 		return err
 	}
@@ -63,7 +63,6 @@ func (s *{{$.StructName}}Handler) {{.Name}}(ctx context.Context, args *{{.Args}}
 
 	if err != nil {
 		return err
-	}
 
 	return nil
 }
